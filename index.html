@@ -1231,21 +1231,38 @@
     spinner.classList.remove('hidden');
     status.classList.add('hidden');
 
-    // Panggil fungsi Apps Script
-    fetch('https://formspree.io/f/xvzewbry', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ name: name, email: email, message: message })
-})
-.then(res => {
-  if (res.ok) {
-    showStatus('success', '✅ Pesan berhasil dikirim! Terima kasih, ' + name + '.');
-    document.getElementById('contact-form').reset();
-  } else {
-    showStatus('error', '❌ Gagal mengirim. Coba lagi ya!');
-  }
-})
-.catch(() => showStatus('error', '❌ Gagal mengirim. Coba lagi ya!'));
+    // Kirim via Formspree
+    var formspreeEndpoint = 'https://formspree.io/f/KODE_FORMSPREE_KAMU'; // GANTI INI DENGAN LINK FORMSPREE MU
+
+    fetch(formspreeEndpoint, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ name: name, email: email, message: message })
+    })
+    .then(function(response) {
+      if (response.ok) {
+        btn.disabled = false;
+        btnText.textContent = 'Send Message';
+        spinner.classList.add('hidden');
+        showStatus('success', '✅ Pesan berhasil dikirim! Terima kasih, ' + name + '.');
+        document.getElementById('contact-form').reset();
+      } else {
+        return response.json().then(function(data) {
+          throw new Error(data.errors ? data.errors.map(e => e.message).join(", ") : 'Terjadi kesalahan dari Formspree.');
+        }).catch(function() {
+          throw new Error('Link Formspree tidak valid atau salah.');
+        });
+      }
+    })
+    .catch(function(error) {
+      btn.disabled = false;
+      btnText.textContent = 'Send Message';
+      spinner.classList.add('hidden');
+      showStatus('error', '❌ Gagal mengirim pesan. Coba lagi ya!' + error.message);
+    });
 
   function showStatus(type, msg) {
     var status = document.getElementById('form-status');
