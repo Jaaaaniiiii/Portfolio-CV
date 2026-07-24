@@ -1238,43 +1238,40 @@
     spinner.classList.remove('hidden');
     status.classList.add('hidden');
 
-    // GANTI ID INI dengan Form ID Formspree yang AKTIF untuk domain GitHub Pages kamu
-    var formspreeEndpoint = 'https://formspree.io/f/xvzewbry';
+    // GANTI URL INI dengan URL "Web app" hasil deploy Apps Script kamu
+    // (didapat dari Deploy > New deployment > Web app, diakhiri "/exec")
+    var backendEndpoint = 'https://script.google.com/macros/s/AKfycbyTUyPaagzCFRpDSQ15a2T_ukOrblKbOlIuXS3GQdUV-yPXz2r2iqoriFnguHYRagckCg/exec';
 
-    fetch(formspreeEndpoint, {
+    // Catatan: Content-Type 'text/plain' sengaja dipakai (bukan 'application/json')
+    // supaya browser TIDAK mengirim preflight OPTIONS dulu — Apps Script Web App
+    // sering gagal menangani preflight itu dengan benar. Isinya tetap JSON string,
+    // dan di sisi Code.gs kita JSON.parse() manual dari e.postData.contents.
+    fetch(backendEndpoint, {
       method: 'POST',
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'text/plain;charset=utf-8'
       },
       body: JSON.stringify({ name: name, email: email, message: message })
     })
     .then(function(response) {
-      // DEBUG: lihat status asli di console (buka DevTools > Console)
-      console.log('[Formspree] HTTP status:', response.status);
-      return response.json().then(function(data) {
-        return { ok: response.ok, status: response.status, data: data };
-      });
+      console.log('[Backend] HTTP status:', response.status);
+      return response.json();
     })
     .then(function(result) {
       btn.disabled = false;
       btnText.textContent = 'Send Message';
       spinner.classList.add('hidden');
 
-      if (result.ok) {
+      if (result.success) {
         showStatus('success', '✅ Pesan berhasil dikirim! Terima kasih, ' + name + '.');
         document.getElementById('contact-form').reset();
       } else {
-        console.error('[Formspree] Error response:', result.data);
-        var errMsg = (result.data && result.data.errors)
-          ? result.data.errors.map(function(e){ return e.message; }).join(', ')
-          : 'HTTP ' + result.status;
-        showStatus('error', '❌ Gagal mengirim pesan (' + errMsg + '). Coba lagi ya!');
+        console.error('[Backend] Error response:', result);
+        showStatus('error', '❌ Gagal mengirim pesan: ' + (result.message || 'Terjadi kesalahan.'));
       }
     })
     .catch(function(error) {
-      // Ini akan menangkap error jaringan/CORS yang gagal total (fetch reject)
-      console.error('[Formspree] Network/CORS error:', error);
+      console.error('[Backend] Network/CORS error:', error);
       btn.disabled = false;
       btnText.textContent = 'Send Message';
       spinner.classList.add('hidden');
