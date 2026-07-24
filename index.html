@@ -1232,27 +1232,20 @@
     status.classList.add('hidden');
 
     // Panggil fungsi Apps Script
-    google.script.run
-      .withSuccessHandler(function(result) {
-        btn.disabled = false;
-        btnText.textContent = 'Send Message';
-        spinner.classList.add('hidden');
-
-        if (result.success) {
-          showStatus('success', '✅ Pesan berhasil dikirim! Terima kasih, ' + name + '.');
-          document.getElementById('contact-form').reset();
-        } else {
-          showStatus('error', '❌ ' + result.message);
-        }
-      })
-      .withFailureHandler(function(err) {
-        btn.disabled = false;
-        btnText.textContent = 'Send Message';
-        spinner.classList.add('hidden');
-        showStatus('error', '❌ Gagal mengirim pesan. Coba lagi ya!');
-      })
-      .submitContactForm({ name: name, email: email, message: message });
+    fetch('https://formspree.io/f/xvzewbry', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ name: name, email: email, message: message })
+})
+.then(res => {
+  if (res.ok) {
+    showStatus('success', '✅ Pesan berhasil dikirim! Terima kasih, ' + name + '.');
+    document.getElementById('contact-form').reset();
+  } else {
+    showStatus('error', '❌ Gagal mengirim. Coba lagi ya!');
   }
+})
+.catch(() => showStatus('error', '❌ Gagal mengirim. Coba lagi ya!'))
 
   function showStatus(type, msg) {
     var status = document.getElementById('form-status');
