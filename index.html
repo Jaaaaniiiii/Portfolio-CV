@@ -1,0 +1,1342 @@
+﻿<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Janiar Rahma Putri – Portfolio</title>
+  <meta name="description"
+    content="Portfolio of Janiar Rahma Putri – Cloud Engineer & Project Manager, Telecommunications Engineering student at Telkom University." />
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <!-- Animations shared across all pages -->
+  <style>
+    /* Apple-like system font stack */
+    :root {
+      --font-apple: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
+                    "Plus Jakarta Sans", "Inter", "Helvetica Neue", sans-serif;
+    }
+    body, button, input, textarea, select {
+      font-family: var(--font-apple);
+    }
+
+    /* ── floating macOS nav ── */
+    #global-nav {
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: auto;
+      min-width: min(760px, calc(100vw - 32px));
+      max-width: calc(100vw - 32px);
+      border-radius: 9999px;
+      border: 1px solid rgba(255,255,255,0.55);
+      background: rgba(255,255,255,0.72);
+      backdrop-filter: saturate(180%) blur(24px);
+      -webkit-backdrop-filter: saturate(180%) blur(24px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.10), 0 1px 0 rgba(255,255,255,0.6) inset;
+      z-index: 50;
+      transition: box-shadow 0.3s ease, background 0.3s ease;
+    }
+    #global-nav:hover {
+      box-shadow: 0 12px 40px rgba(0,0,0,0.14), 0 1px 0 rgba(255,255,255,0.7) inset;
+    }
+
+    /* mobile dropdown under pill */
+    #mobile-nav {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100vw - 32px);
+      border-radius: 20px;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: saturate(180%) blur(24px);
+      -webkit-backdrop-filter: saturate(180%) blur(24px);
+      border: 1px solid rgba(255,255,255,0.55);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+      padding: 12px 20px;
+      gap: 4px;
+    }
+    #mobile-nav a {
+      padding: 10px 12px;
+      border-radius: 10px;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+    #mobile-nav a:hover {
+      background: rgba(0,88,189,0.07);
+    }
+    @keyframes float-ambient {
+      0% {
+        transform: translateY(0px) rotate(0deg);
+      }
+
+      33% {
+        transform: translateY(-20px) rotate(5deg) translateX(10px);
+      }
+
+      66% {
+        transform: translateY(15px) rotate(-5deg) translateX(-10px);
+      }
+
+      100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+    }
+
+    .float-emoji {
+      animation: float-ambient infinite ease-in-out;
+    }
+
+    /* Experience page: float */
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-20px) rotate(5deg);
+      }
+    }
+
+    .emoji-float {
+      position: absolute;
+      animation: float 6s ease-in-out infinite;
+      opacity: 0.15;
+      filter: blur(0.5px);
+    }
+
+    .emoji-float-1 {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .emoji-float-2 {
+      animation: float 8s ease-in-out infinite 1s;
+    }
+
+    .emoji-float-3 {
+      animation: float 10s ease-in-out infinite 2s;
+    }
+
+    /* Organizations page: drift */
+    @keyframes drift {
+
+      0%,
+      100% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+
+      50% {
+        transform: translate(20px, -20px) rotate(5deg);
+      }
+    }
+
+    @keyframes drift-slow {
+
+      0%,
+      100% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+
+      50% {
+        transform: translate(-30px, 30px) rotate(-10deg);
+      }
+    }
+
+    @keyframes drift-reverse {
+
+      0%,
+      100% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+
+      50% {
+        transform: translate(30px, 20px) rotate(15deg);
+      }
+    }
+
+    .animate-drift {
+      animation: drift 8s ease-in-out infinite;
+    }
+
+    .animate-drift-slow {
+      animation: drift-slow 12s ease-in-out infinite;
+    }
+
+    .animate-drift-reverse {
+      animation: drift-reverse 10s ease-in-out infinite;
+    }
+
+    /* Skills page: bounce */
+    @keyframes bounce-skill {
+
+      0%,
+      100% {
+        transform: translateY(-25%);
+        animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+      }
+
+      50% {
+        transform: none;
+        animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+      }
+    }
+
+    /* Glass panel — refined macOS liquid glass */
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07), 0 1px 0 rgba(255,255,255,0.8) inset;
+      transition: box-shadow 0.25s ease, transform 0.25s ease;
+    }
+    .glass-panel:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.10), 0 1px 0 rgba(255,255,255,0.9) inset;
+    }
+
+    /* Chip — macOS tag style */
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 10px;
+      border-radius: 8px;
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      background: rgba(0, 88, 189, 0.07);
+      border: 1px solid rgba(0, 88, 189, 0.15);
+      color: #004494;
+      font-family: var(--font-apple);
+    }
+
+    /* Skill pill */
+    .skill-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 10px;
+      font-size: 13.5px;
+      font-weight: 500;
+      background: rgba(255,255,255,0.65);
+      border: 1px solid rgba(255,255,255,0.5);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: #1a1b1e;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      font-family: var(--font-apple);
+      transition: background 0.15s ease, box-shadow 0.15s ease;
+    }
+    .skill-pill:hover {
+      background: rgba(255,255,255,0.85);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.09);
+    }
+
+    /* Page sections: fade in on display */
+    .page-section {
+      display: none;
+    }
+    .page-section.active {
+      display: block;
+      animation: pageFadeIn 0.25s ease;
+    }
+    @keyframes pageFadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── macOS pill nav active ── */
+    .nav-active {
+      color: #0058bd !important;
+      font-weight: 600 !important;
+      background: rgba(0, 88, 189, 0.10) !important;
+    }
+    .nav-inactive {
+      /* no border-bottom, handled via pill hover in HTML */
+    }
+  </style>
+
+  <script id="tailwind-config">
+    try {
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        keyframes: {
+          drift: {
+            '0%, 100%': { transform: 'translate(0, 0) rotate(0deg)' },
+            '50%': { transform: 'translate(20px, -20px) rotate(5deg)' },
+          },
+          'drift-slow': {
+            '0%, 100%': { transform: 'translate(0, 0) rotate(0deg)' },
+            '50%': { transform: 'translate(-30px, 30px) rotate(-10deg)' },
+          },
+          'drift-reverse': {
+            '0%, 100%': { transform: 'translate(0, 0) rotate(0deg)' },
+            '50%': { transform: 'translate(30px, 20px) rotate(15deg)' },
+          }
+        },
+        animation: {
+          'drift': 'drift 8s ease-in-out infinite',
+          'drift-slow': 'drift-slow 12s ease-in-out infinite',
+          'drift-reverse': 'drift-reverse 10s ease-in-out infinite',
+        },
+        "colors": {
+          "surface-tint": "#005ac1",
+          "secondary": "#5c5f60",
+          "on-error": "#ffffff",
+          "on-background": "#1a1b1e",
+          "secondary-fixed-dim": "#c5c7c8",
+          "error-container": "#ffdad6",
+          "inverse-surface": "#2f3033",
+          "glass-surface": "rgba(255, 255, 255, 0.7)",
+          "on-secondary-container": "#626566",
+          "surface-container": "#efedf1",
+          "on-tertiary-container": "#fffbff",
+          "primary-fixed": "#d8e2ff",
+          "secondary-container": "#e1e3e4",
+          "outline-variant": "#c2c6d5",
+          "surface-container-low": "#f4f3f7",
+          "secondary-fixed": "#e1e3e4",
+          "on-primary-fixed": "#001a41",
+          "outline": "#727785",
+          "surface-container-highest": "#e3e2e6",
+          "on-tertiary-fixed": "#2f1400",
+          "surface-container-lowest": "#ffffff",
+          "on-surface-variant": "#424753",
+          "on-primary-container": "#fefcff",
+          "error": "#ba1a1a",
+          "tertiary-fixed-dim": "#ffb780",
+          "inverse-primary": "#adc6ff",
+          "background-main": "#F1F3F4",
+          "on-tertiary-fixed-variant": "#6f3800",
+          "tertiary-fixed": "#ffdcc4",
+          "on-primary": "#ffffff",
+          "primary-fixed-dim": "#adc6ff",
+          "primary": "#0058bd",
+          "surface-container-high": "#e9e7eb",
+          "tertiary": "#8f4a00",
+          "surface-dim": "#dbd9dd",
+          "glass-border": "rgba(255, 255, 255, 0.4)",
+          "on-secondary-fixed-variant": "#454748",
+          "surface": "#faf9fd",
+          "on-error-container": "#93000a",
+          "on-secondary-fixed": "#191c1d",
+          "tertiary-container": "#b35e00",
+          "on-primary-fixed-variant": "#004494",
+          "inverse-on-surface": "#f1f0f4",
+          "on-tertiary": "#ffffff",
+          "on-secondary": "#ffffff",
+          "on-surface": "#1a1b1e",
+          "background": "#faf9fd",
+          "surface-variant": "#e3e2e6",
+          "text-secondary": "#5F6368",
+          "primary-container": "#2771df",
+          "surface-bright": "#faf9fd"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "container-max": "1200px",
+          "stack-sm": "8px",
+          "margin-desktop": "40px",
+          "stack-md": "16px",
+          "gutter": "24px",
+          "margin-mobile": "16px",
+          "stack-lg": "32px",
+          "section-gap": "80px"
+        },
+        "fontFamily": {
+          "body-sm": ["Inter"],
+          "headline-xl": ["Inter"],
+          "label-md": ["Inter"],
+          "body-lg": ["Inter"],
+          "headline-lg": ["Inter"],
+          "body-md": ["Inter"],
+          "headline-md": ["Inter"],
+          "headline-lg-mobile": ["Inter"]
+        },
+        "fontSize": {
+          "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+          "headline-xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+          "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+          "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+          "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+          "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+          "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+          "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "700" }]
+        }
+      },
+    },
+  }
+} catch(_e) {}
+  </script>
+</head>
+
+<!-- ============================================================
+     SINGLE SHARED NAVIGATION BAR
+     (replaces the nav/header in each individual page)
+     ============================================================ -->
+
+<body class="bg-background-main text-on-surface antialiased min-h-screen flex flex-col relative overflow-x-hidden">
+
+  <!-- Ambient Background Blobs (always visible, behind everything) -->
+  <div
+    class="fixed top-[-10%] left-[-10%] w-[40vw] h-[40vw] rounded-full bg-primary/5 blur-[120px] pointer-events-none -z-10">
+  </div>
+  <div
+    class="fixed bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-tertiary-fixed/30 blur-[150px] pointer-events-none -z-10">
+  </div>
+
+  <!-- ===== SHARED TOP NAVIGATION (macOS floating pill) ===== -->
+  <nav id="global-nav">
+    <div class="px-5 md:px-6 flex justify-between items-center h-14">
+
+      <!-- Brand Logo -->
+      <a class="text-[15px] font-semibold text-on-surface cursor-pointer tracking-tight select-none"
+        onclick="navigateTo('home'); return false;" href="#"
+        style="font-family: var(--font-apple); letter-spacing: -0.01em;">
+        Janiar Rahma Putri
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <div class="hidden md:flex items-center gap-1">
+        <a id="nav-home"
+          class="px-3 py-1.5 rounded-full text-[13px] font-medium cursor-pointer transition-all duration-200 nav-active"
+          style="font-family: var(--font-apple);"
+          onclick="navigateTo('home'); return false;" href="#">Home</a>
+        <a id="nav-experience"
+          class="px-3 py-1.5 rounded-full text-[13px] font-medium cursor-pointer transition-all duration-200 text-on-surface-variant hover:bg-black/5 hover:text-on-surface nav-inactive"
+          style="font-family: var(--font-apple);"
+          onclick="navigateTo('experience'); return false;" href="#">Experience</a>
+        <a id="nav-organizations"
+          class="px-3 py-1.5 rounded-full text-[13px] font-medium cursor-pointer transition-all duration-200 text-on-surface-variant hover:bg-black/5 hover:text-on-surface nav-inactive"
+          style="font-family: var(--font-apple);"
+          onclick="navigateTo('organizations'); return false;" href="#">Organizations</a>
+        <a id="nav-skills"
+          class="px-3 py-1.5 rounded-full text-[13px] font-medium cursor-pointer transition-all duration-200 text-on-surface-variant hover:bg-black/5 hover:text-on-surface nav-inactive"
+          style="font-family: var(--font-apple);"
+          onclick="navigateTo('skills'); return false;" href="#">Skills</a>
+        <a id="nav-contact"
+          class="px-3 py-1.5 rounded-full text-[13px] font-medium cursor-pointer transition-all duration-200 text-on-surface-variant hover:bg-black/5 hover:text-on-surface nav-inactive"
+          style="font-family: var(--font-apple);"
+          onclick="navigateTo('contact'); return false;" href="#">Contact</a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button class="md:hidden w-8 h-8 flex items-center justify-center rounded-full hover:bg-black/5 transition-colors text-on-surface" onclick="toggleMobileMenu()">
+        <span class="material-symbols-outlined text-[20px]">menu</span>
+      </button>
+    </div>
+
+    <!-- Mobile Dropdown -->
+    <div id="mobile-nav" class="hidden md:hidden flex-col" style="font-family: var(--font-apple);">
+      <a class="text-[14px] font-medium text-on-surface-variant cursor-pointer flex items-center"
+        onclick="navigateTo('home');          toggleMobileMenu(); return false;" href="#">Home</a>
+      <a class="text-[14px] font-medium text-on-surface-variant cursor-pointer flex items-center"
+        onclick="navigateTo('experience');    toggleMobileMenu(); return false;" href="#">Experience</a>
+      <a class="text-[14px] font-medium text-on-surface-variant cursor-pointer flex items-center"
+        onclick="navigateTo('organizations'); toggleMobileMenu(); return false;" href="#">Organizations</a>
+      <a class="text-[14px] font-medium text-on-surface-variant cursor-pointer flex items-center"
+        onclick="navigateTo('skills');        toggleMobileMenu(); return false;" href="#">Skills</a>
+      <a class="text-[14px] font-medium text-on-surface-variant cursor-pointer flex items-center"
+        onclick="navigateTo('contact');       toggleMobileMenu(); return false;" href="#">Contact</a>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+     PAGE 1 — HOME
+     Source: portfolio_app_navigation/code.html
+     (body content preserved 100%, nav removed)
+     ============================================================ -->
+  <div id="page-home" class="page-section active">
+    <!-- Floating Emojis -->
+    <div class="fixed top-[15%] left-[5%] text-6xl opacity-30 blur-[2px] -z-1 float-emoji pointer-events-none"
+      style="animation-duration: 8s;">☁️</div>
+    <div class="fixed top-[40%] right-[10%] text-5xl opacity-40 blur-[1px] -z-1 float-emoji pointer-events-none"
+      style="animation-duration: 12s; animation-delay: 1s;">💻</div>
+    <div class="fixed bottom-[20%] left-[15%] text-7xl opacity-20 blur-[3px] -z-1 float-emoji pointer-events-none"
+      style="animation-duration: 10s; animation-delay: 2s;">🚀</div>
+    <div class="fixed top-[25%] right-[20%] text-4xl opacity-50 blur-[1px] -z-1 float-emoji pointer-events-none"
+      style="animation-duration: 9s; animation-delay: 0.5s;">✨</div>
+    <div class="fixed bottom-[30%] right-[25%] text-6xl opacity-30 blur-[2px] -z-1 float-emoji pointer-events-none"
+      style="animation-duration: 11s; animation-delay: 3s;">📂</div>
+    <div class="fixed top-[60%] left-[8%] text-5xl opacity-40 blur-[1.5px] -z-1 float-emoji pointer-events-none"
+      style="animation-duration: 14s; animation-delay: 1.5s;">☁️</div>
+    <!-- Main Content Canvas -->
+    <main
+      class="flex-grow pt-[120px] pb-section-gap px-margin-mobile md:px-margin-desktop flex items-center justify-center">
+      <!-- Hero Section: macOS Glass Widget -->
+      <section class="w-full max-w-container-max mx-auto relative z-10">
+        <div
+          class="bg-glass-surface backdrop-blur-[20px] border border-glass-border rounded-xl glass-shadow overflow-hidden flex flex-col relative">
+          <!-- macOS Window Controls (Decorative Header) -->
+          <div class="h-10 w-full border-b border-glass-border flex items-center px-4 gap-2 bg-white/40">
+            <div class="w-3 h-3 rounded-full bg-[#FF5F57] border border-black/10"></div>
+            <div class="w-3 h-3 rounded-full bg-[#FEBC2E] border border-black/10"></div>
+            <div class="w-3 h-3 rounded-full bg-[#28C840] border border-black/10"></div>
+          </div>
+          <!-- Widget Content Body -->
+          <div class="flex flex-col md:flex-row p-stack-lg md:p-[64px] gap-gutter md:gap-[80px] items-center">
+            <!-- Left: Portrait / Visual -->
+            <div class="w-full md:w-5/12 flex-shrink-0 relative group">
+              <!-- Decorative border ring -->
+              <div
+                class="absolute inset-0 rounded-xl border border-glass-border translate-x-2 translate-y-2 -z-10 bg-white/20 transition-transform duration-500 group-hover:translate-x-3 group-hover:translate-y-3">
+              </div>
+              <div
+                class="aspect-[4/5] w-full rounded-xl overflow-hidden border border-glass-border bg-surface-container-lowest relative z-10">
+                <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDstHmlQZIl4nXvqBPwSHsogcsap15cES8aSl4JBG2gEJiJ0_s6YIV-LUuyLElPp7ObDP2CPAiuvgE75BrrP-0wrsx238pbLay3w-_ijzIsNzLcxknM7OzvxIbn_CH-jFb5Nemra9U1kjmDbiffME9yLTEq2RmeUjZj-4_PDqbAMjNUjExYzPNu98nFJiA3RvEXRqqwjDodUuARiQeF611CDP28CcoVMVzrnOjCPgXoMYsZAd7drziAdg" alt="Janiar Rahma Putri – Professional portrait"/>
+              </div>
+            </div>
+            <!-- Right: Text Content & Actions -->
+            <div class="w-full md:w-7/12 flex flex-col justify-center text-center md:text-left">
+              <div
+                class="inline-flex items-center gap-2 mb-stack-md mx-auto md:mx-0 px-4 py-1.5 rounded-full bg-surface-container-highest/50 border border-glass-border w-fit">
+                <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Available for Opportunities</span>
+              </div>
+              <h1
+                class="font-headline-xl text-headline-xl text-on-surface font-bold mb-stack-sm tracking-tight text-balance">
+                Janiar Rahma Putri
+              </h1>
+              <h2 class="font-headline-md text-headline-md text-primary mb-stack-lg text-balance">
+                Cloud and DevOps Enthusiast
+              </h2>
+              <p
+                class="font-body-lg text-body-lg text-on-surface-variant mb-stack-lg leading-relaxed max-w-2xl text-pretty">
+                Final-year Telecommunications Engineering student at <strong class="text-on-surface">Telkom University</strong> (GPA 3.57/4.00)
+                with hands-on experience as a <strong class="text-on-surface">DevOps Engineer Intern</strong> — managing Linux servers,
+                CI/CD pipelines, Docker &amp; Kubernetes, and security testing. Certified in
+                <strong class="text-on-surface">Huawei HCIA Cloud &amp; Datacom</strong> and <strong class="text-on-surface">Cisco CCNA</strong>.
+                Proven leader who has managed IDR 21.6M budgets, mentored 10+ engineers, and coordinated
+                events with 200+ participants across ANL, AIESEC, and SEARCH Telkom University.
+              </p>
+              <!-- Action Buttons -->
+              <div class="flex flex-col sm:flex-row items-center gap-stack-md mt-4">
+                <!-- Primary Button -->
+                <button onclick="navigateTo('experience')" class="w-full sm:w-auto px-8 py-3 bg-primary text-on-primary rounded-full font-label-md text-label-md hover:bg-surface-tint transition-all duration-300 ease-in-out hover:shadow-[0_4px_12px_rgba(0,88,189,0.3)] flex items-center justify-center gap-2">
+  View Experience
+  <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+                <!-- Secondary Glass Button -->
+                <button class="w-full sm:w-auto px-8 py-3 bg-transparent border border-glass-border text-on-surface rounded-full font-label-md text-label-md hover:bg-white/40 transition-all duration-300 ease-in-out flex items-center justify-center gap-2">
+  Download Resume
+  <span class="material-symbols-outlined text-[18px]">download</span>
+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Tech Stack Pills (Floating outside widget) -->
+        <div class="mt-stack-lg flex flex-wrap items-center justify-center gap-stack-sm md:gap-stack-md relative z-10">
+          <span class="text-on-surface-variant font-label-md text-label-md mr-2">Core Tech:</span>
+          <span class="px-4 py-1.5 rounded-full bg-surface-container-highest border border-glass-border text-on-surface font-label-md text-label-md shadow-sm">Cloud-Native</span>
+          <span class="px-4 py-1.5 rounded-full bg-surface-container-highest border border-glass-border text-on-surface font-label-md text-label-md shadow-sm">DevOps</span>
+          <span class="px-4 py-1.5 rounded-full bg-surface-container-highest border border-glass-border text-on-surface font-label-md text-label-md shadow-sm">Security</span>
+          <span class="px-4 py-1.5 rounded-full bg-surface-container-highest border border-glass-border text-on-surface font-label-md text-label-md shadow-sm">5G Networks</span>
+        </div>
+      </section>
+    </main>
+        <!-- Footer -->
+    <footer class="w-full py-stack-lg glass-footer mt-auto">
+      <div
+        class="max-w-container-max mx-auto px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-stack-md">
+        <div class="font-label-md text-label-md font-bold text-on-surface">Janiar Rahma Putri</div>
+        <div class="flex gap-stack-md">
+          <a class="text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100 font-label-md text-label-md"
+            href="https://linkedin.com/in/janiarrahmaputri" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100 font-label-md text-label-md"
+            href="https://github.com/Jaaaaniiiii" target="_blank" rel="noopener">GitHub</a>
+          <a class="text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100 font-label-md text-label-md"
+            href="mailto:janiarrahmaputri@gmail.com">Email</a>
+        </div>
+        <div class="font-body-sm text-body-sm text-on-surface-variant">© 2026 Janiar Rahma Putri. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </div>
+  <!-- ============================================================ -->
+
+
+  <!-- ============================================================
+     PAGE 2 — EXPERIENCE
+     Source: experience_janiar_rahma_putri/code.html
+     (body content preserved 100%, nav removed)
+     ============================================================ -->
+  <div id="page-experience" class="page-section">
+    <!-- Floating Background Emojis -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10 select-none" aria-hidden="true">
+      <style>
+        @keyframes float-exp {
+
+          0%,
+          100% {
+            transform: translateY(0) rotate(0deg);
+          }
+
+          50% {
+            transform: translateY(-20px) rotate(5deg);
+          }
+        }
+
+        .emoji-float-exp {
+          position: absolute;
+          animation: float-exp 6s ease-in-out infinite;
+          opacity: 0.15;
+          filter: blur(0.5px);
+        }
+      </style>
+      <span class="emoji-float-exp text-4xl" style="top: 15%; left: 5%; animation-delay: 0s;">🎓</span>
+      <span class="emoji-float-exp text-2xl" style="top: 45%; left: 12%; animation-delay: 1s;">💼</span>
+      <span class="emoji-float-exp text-5xl" style="top: 75%; left: 8%; animation-delay: 2s;">🚀</span>
+      <span class="emoji-float-exp text-3xl" style="top: 25%; right: 10%; animation-delay: 1.5s;">📈</span>
+      <span class="emoji-float-exp text-6xl" style="top: 60%; right: 5%; animation-delay: 0.5s;">💻</span>
+      <span class="emoji-float-exp text-2xl" style="top: 85%; right: 15%; animation-delay: 2.5s;">✨</span>
+      <span class="emoji-float-exp text-3xl" style="top: 10%; left: 40%; animation-delay: 3s;">✨</span>
+      <span class="emoji-float-exp text-4xl" style="top: 90%; left: 50%; animation-delay: 4s;">🚀</span>
+    </div>
+    <!-- Main Content -->
+    <main
+      class="flex-grow max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop w-full grid grid-cols-1 lg:grid-cols-12 gap-gutter py-section-gap"
+      style="padding-top: 112px;">
+      <!-- Page Header -->
+      <div class="col-span-1 lg:col-span-12 mb-stack-lg text-center md:text-left">
+        <h1 class="font-headline-xl text-headline-xl text-on-surface mb-stack-sm">Journey &amp; Milestones</h1>
+        <p class="font-body-lg text-body-lg text-text-secondary">Academic foundation and professional experience.</p>
+      </div>
+      <!-- Experience Column -->
+      <div class="col-span-1 lg:col-span-7 flex flex-col gap-stack-lg">
+        <div class="flex items-center gap-3 mb-stack-sm">
+          <div class="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center">
+            <span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings:'FILL' 1;">work_history</span>
+          </div>
+          <h2 class="font-headline-lg text-headline-lg text-on-surface">Work Experience</h2>
+        </div>
+        <!-- Experience Card 1 -->
+        <div class="glass-panel p-stack-lg transition-transform hover:-translate-y-1 duration-300">
+          <div class="flex justify-between items-start mb-stack-md flex-wrap gap-stack-sm">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-lg">⚙️</span>
+                <h3 class="font-headline-md text-headline-md text-primary">DevOps Engineer Intern</h3>
+              </div>
+              <p class="font-body-lg text-body-lg text-on-surface font-semibold">PT Teknologi Nirmala Olah Daya Informasi</p>
+            </div>
+          </div>
+          <p class="font-body-md text-body-md text-text-secondary mb-stack-md leading-relaxed">
+            Managed Linux server infrastructure and streamlined development workflows through CI/CD pipeline automation.
+            Configured and orchestrated containerized applications using Docker and Kubernetes to ensure scalability.
+            Implemented Cloudflare solutions for enhanced security and performance optimization.
+          </p>
+          <div class="flex flex-wrap gap-stack-sm mt-stack-md">
+            <span class="chip">Linux</span>
+            <span class="chip">CI/CD (Jenkins)</span>
+            <span class="chip">Docker</span>
+            <span class="chip">Kubernetes</span>
+            <span class="chip">Monitoring (Grafana)</span>
+            <span class="chip">Performance Testing (K6)</span>
+            <span class="chip">AppSec (Burpsuite)</span>
+          </div>
+        </div>
+        <!-- Experience Card 2 -->
+        <div class="glass-panel p-stack-lg transition-transform hover:-translate-y-1 duration-300">
+          <div class="flex justify-between items-start mb-stack-md flex-wrap gap-stack-sm">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-lg">🎯</span>
+                <h3 class="font-headline-md text-headline-md text-primary">Brand Ambassador</h3>
+              </div>
+              <p class="font-body-lg text-body-lg text-on-surface font-semibold">blu by BCA Digital</p>
+            </div>
+          </div>
+          <p class="font-body-md text-body-md text-text-secondary mb-stack-md leading-relaxed">
+            Drove campus brand awareness and user engagement strategies for digital banking solutions. Facilitated and
+            organized workshops focusing on Content Creation and Public Speaking to empower students and enhance digital
+            literacy. Actively managed community relationships to build a positive brand image.
+          </p>
+          <div class="flex flex-wrap gap-stack-sm mt-stack-md">
+            <span class="chip">Brand Awareness</span>
+            <span class="chip">User Engagement</span>
+            <span class="chip">Public Speaking</span>
+            <span class="chip">Financial literacy</span>
+            <span class="chip">Content Creator</span>
+          </div>
+        </div>
+      </div>
+      <!-- Education Column -->
+      <div class="col-span-1 lg:col-span-5 flex flex-col gap-stack-lg mt-section-gap lg:mt-0">
+        <div class="flex items-center gap-3 mb-stack-sm">
+          <div class="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center">
+            <span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings:'FILL' 1;">school</span>
+          </div>
+          <h2 class="font-headline-lg text-headline-lg text-on-surface">Education</h2>
+        </div>
+        <!-- Education Card -->
+        <div class="glass-panel p-stack-lg h-full">
+          <div class="mb-stack-lg">
+            <h3 class="font-headline-md text-headline-md text-primary mb-stack-sm">Telkom University</h3>
+            <p class="font-body-md text-body-md text-text-secondary font-semibold">Sep 2023 - Sep 2027</p>
+            <div class="mt-stack-sm p-stack-md bg-white/40 rounded-lg border border-glass-border">
+              <p class="font-body-lg text-body-lg text-on-surface font-bold">Bachelor of Science, Telecommunications
+                Engineering</p>
+              <p class="font-body-md text-body-md text-primary mt-1">GPA: 3.57 / 4.00</p>
+            </div>
+          </div>
+          <div>
+            <h4 class="font-label-md text-label-md text-text-secondary uppercase tracking-wider mb-stack-md">Academic
+              Focus</h4>
+            <ul class="space-y-stack-sm">
+              <li class="flex items-start gap-stack-sm">
+                <span class="material-symbols-outlined text-primary mt-0.5 text-base" style="font-variation-settings:'FILL' 1;">check_circle</span>
+                <span class="font-body-md text-body-md text-on-surface">Broadband telecommunications access and core networks</span>
+              </li>
+              <li class="flex items-start gap-stack-sm">
+                <span class="material-symbols-outlined text-primary mt-0.5 text-base" style="font-variation-settings:'FILL' 1;">check_circle</span>
+                <span class="font-body-md text-body-md text-on-surface">Mobile network planning and optimization</span>
+              </li>
+              <li class="flex items-start gap-stack-sm">
+                <span class="material-symbols-outlined text-primary mt-0.5 text-base" style="font-variation-settings:'FILL' 1;">check_circle</span>
+                <span class="font-body-md text-body-md text-on-surface">Satellite network planning and optimization</span>
+              </li>
+              <li class="flex items-start gap-stack-sm">
+                <span class="material-symbols-outlined text-primary mt-0.5 text-base" style="font-variation-settings:'FILL' 1;">check_circle</span>
+                <span class="font-body-md text-body-md text-on-surface">Terrestrial network planning and optimization</span>
+              </li>
+              <li class="flex items-start gap-stack-sm">
+                <span class="material-symbols-outlined text-primary mt-0.5 text-base" style="font-variation-settings:'FILL' 1;">check_circle</span>
+                <span class="font-body-md text-body-md text-on-surface">Cybersecurity and Network Virtualization</span>
+              </li>
+              <li class="flex items-start gap-stack-sm">
+                <span class="material-symbols-outlined text-primary mt-0.5 text-base" style="font-variation-settings:'FILL' 1;">check_circle</span>
+                <span class="font-body-md text-body-md text-on-surface">Efficient, high-performance data communication networks</span>
+              </li>
+              <li class="flex items-start gap-stack-sm">
+                <span class="material-symbols-outlined text-primary mt-0.5 text-base" style="font-variation-settings:'FILL' 1;">check_circle</span>
+                <span class="font-body-md text-body-md text-on-surface">Cloud and Edge Computing</span>
+              </li>
+              <li class="flex items-start gap-stack-sm">
+                <span class="material-symbols-outlined text-primary mt-0.5 text-base" style="font-variation-settings:'FILL' 1;">check_circle</span>
+                <span class="font-body-md text-body-md text-on-surface">Development of future internet networks</span>
+              </li>
+              <li class="flex items-start gap-stack-sm">
+                <span class="material-symbols-outlined text-primary mt-0.5 text-base" style="font-variation-settings:'FILL' 1;">check_circle</span>
+                <span class="font-body-md text-body-md text-on-surface">Development of advanced transmission technologies and systems</span>
+              </li>
+              <li class="flex items-start gap-stack-sm">
+                <span class="material-symbols-outlined text-primary mt-0.5 text-base" style="font-variation-settings:'FILL' 1;">check_circle</span>
+                <span class="font-body-md text-body-md text-on-surface">Network and technology integration</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- Footer -->
+    <footer class="w-full py-stack-lg glass-footer mt-auto">
+      <div
+        class="max-w-container-max mx-auto px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-stack-md">
+        <div class="font-label-md text-label-md font-bold text-on-surface">Janiar Rahma Putri</div>
+        <div class="flex gap-stack-md">
+          <a class="text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100 font-label-md text-label-md"
+            href="https://linkedin.com/in/janiarrahmaputri" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100 font-label-md text-label-md"
+            href="https://github.com/Jaaaaniiiii" target="_blank" rel="noopener">GitHub</a>
+          <a class="text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100 font-label-md text-label-md"
+            href="mailto:janiarrahmaputri@gmail.com">Email</a>
+        </div>
+        <div class="font-body-sm text-body-sm text-on-surface-variant">© 2026 Janiar Rahma Putri. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </div>
+  <!-- ============================================================ -->
+
+
+  <!-- ============================================================
+     PAGE 3 — ORGANIZATIONS
+     Source: organizations_janiar_rahma_putri_animated/code.html
+     (body content preserved 100%, nav removed)
+     ============================================================ -->
+  <div id="page-organizations" class="page-section">
+    <!-- Floating Background Emojis -->
+    <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none select-none opacity-10">
+      <div class="absolute top-[15%] left-[10%] text-6xl animate-drift">🤝</div>
+      <div class="absolute top-[35%] right-[15%] text-8xl animate-drift-slow">🌐</div>
+      <div class="absolute top-[75%] left-[15%] text-7xl animate-drift-reverse">🏆</div>
+      <div class="absolute top-[25%] right-[40%] text-5xl animate-drift">🏆</div>
+      <div class="absolute top-[60%] left-[45%] text-6xl animate-drift-slow">🤝</div>
+      <div class="absolute top-[80%] right-[25%] text-7xl animate-drift">🌐</div>
+    </div>
+    <!-- Main Content -->
+    <main class="flex-grow px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full relative z-10"
+      style="padding-top: 112px; padding-bottom: 80px;">
+      <!-- Page Header -->
+      <header class="mb-section-gap text-center md:text-left">
+        <h1 class="font-headline-xl text-headline-lg-mobile md:text-headline-xl text-on-surface mb-stack-sm">
+          Organizational Impact</h1>
+        <p class="font-body-lg text-body-lg text-text-secondary max-w-2xl">A history of leadership, technical
+          mentorship, and event coordination across various university networks.</p>
+      </header>
+      <!-- Bento Grid for Organizations -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter auto-rows-min">
+        <!-- ANL - Large Feature Card (Spans 12 cols on desktop) -->
+        <article
+          class="glass-panel col-span-1 md:col-span-12 p-stack-lg md:p-[48px] flex flex-col gap-stack-lg">
+          <div class="flex items-center gap-stack-md pb-stack-md border-b border-glass-border">
+            <div class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center text-primary">
+              <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">lan</span>
+            </div>
+            <div>
+              <h2 class="font-headline-md text-headline-md text-on-surface">Adaptive Network Laboratory (ANL)</h2>
+              <span class="font-label-md text-label-md text-text-secondary">Telkom University</span>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-stack-lg">
+            <!-- ANL Role 1 -->
+            <div class="flex flex-col gap-stack-sm">
+              <h3 class="font-body-md text-body-md font-semibold text-primary">Head Treasurer</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant">Managed an IDR 21.6M budget, ensuring
+                accurate financial reporting and optimized resource allocation for laboratory operations.</p>
+            </div>
+            <!-- ANL Role 2 -->
+            <div class="flex flex-col gap-stack-sm">
+              <h3 class="font-body-md text-body-md font-semibold text-primary">Research Assistant</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant">Focused on Cloud Native architectures,
+                Kubernetes orchestration, and emerging 5G networking technologies.</p>
+            </div>
+            <!-- ANL Role 3 -->
+            <div class="flex flex-col gap-stack-sm">
+              <h3 class="font-body-md text-body-md font-semibold text-primary">Mentor &amp; Head Coordinator</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant">Led technical training on Docker (Adinusa)
+                &amp; Django (Udemy). Guided project teams developing Apotek Web Dev &amp; SDN Management Systems.</p>
+            </div>
+            <!-- ANL Role 4 -->
+            <div class="flex flex-col gap-stack-sm">
+              <h3 class="font-body-md text-body-md font-semibold text-primary">Python Instructor</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant">Designed and delivered specialized Python
+                programming sessions tailored for telecommunications engineering students.</p>
+            </div>
+            <!-- ANL Role 5 -->
+            <div class="flex flex-col gap-stack-sm lg:col-span-2">
+              <h3 class="font-body-md text-body-md font-semibold text-primary">People Division Member</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant">Acted as Master of Ceremonies (MC) for key
+                events and successfully managed the planning and execution of 5 internal laboratory events.</p>
+            </div>
+          </div>
+        </article>
+        <!-- AIESEC - Medium Card (Spans 6 cols on desktop) -->
+        <article
+          class="glass-panel col-span-1 md:col-span-6 p-stack-lg flex flex-col gap-stack-md h-full">
+          <div class="flex items-center gap-stack-md pb-stack-sm border-b border-glass-border">
+            <div
+              class="w-10 h-10 rounded-full bg-secondary-container/30 flex items-center justify-center text-on-secondary-container">
+              <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">public</span>
+            </div>
+            <h2 class="font-headline-md text-body-lg font-bold text-on-surface">AIESEC</h2>
+          </div>
+          <div>
+            <h3 class="font-body-md text-body-md font-semibold text-primary mb-stack-sm">Future Leaders Summer Peak PIC
+              Final Project</h3>
+            <p class="font-body-sm text-body-sm text-on-surface-variant">Led a diverse 10-member team through a
+              comprehensive Food &amp; Beverage revitalization case study. Utilized Notion extensively for project
+              management and thorough documentation.</p>
+          </div>
+        </article>
+        <!-- SEARCH - Medium Card (Spans 6 cols on desktop) -->
+        <article
+          class="glass-panel col-span-1 md:col-span-6 p-stack-lg flex flex-col gap-stack-md h-full">
+          <div class="flex items-center gap-stack-md pb-stack-sm border-b border-glass-border">
+            <div
+              class="w-10 h-10 rounded-full bg-secondary-container/30 flex items-center justify-center text-on-secondary-container">
+              <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">record_voice_over</span>
+            </div>
+            <h2 class="font-headline-md text-body-lg font-bold text-on-surface">SEARCH Telkom University</h2>
+          </div>
+          <div>
+            <h3 class="font-body-md text-body-md font-semibold text-primary mb-stack-sm">Webinar Committee</h3>
+            <p class="font-body-sm text-body-sm text-on-surface-variant">Organized and executed 2 major online webinars,
+              successfully coordinating logistics and marketing to attract and manage over 200 participants per event.
+            </p>
+          </div>
+        </article>
+      </div>
+    </main>
+    <!-- Footer -->
+    <footer class="w-full py-stack-lg glass-footer mt-auto">
+      <div
+        class="max-w-container-max mx-auto px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-stack-md">
+        <div class="font-label-md text-label-md font-bold text-on-surface">Janiar Rahma Putri</div>
+        <div class="flex gap-stack-md">
+          <a class="text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100 font-label-md text-label-md"
+            href="https://linkedin.com/in/janiarrahmaputri" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100 font-label-md text-label-md"
+            href="https://github.com/Jaaaaniiiii" target="_blank" rel="noopener">GitHub</a>
+          <a class="text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100 font-label-md text-label-md"
+            href="mailto:janiarrahmaputri@gmail.com">Email</a>
+        </div>
+        <div class="font-body-sm text-body-sm text-on-surface-variant">© 2026 Janiar Rahma Putri. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </div>
+  <!-- ============================================================ -->
+
+
+  <!-- ============================================================
+     PAGE 4 — SKILLS
+     Source: skills_janiar_rahma_putri/code.html
+     (body content preserved 100%, nav removed)
+     ============================================================ -->
+  <div id="page-skills" class="page-section">
+    <!-- Floating Background Emojis -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0 select-none opacity-20">
+      <div class="absolute top-[15%] left-[5%] text-7xl animate-bounce"
+        style="animation-duration: 8s; animation-timing-function: ease-in-out;">🛠️</div>
+      <div class="absolute top-[40%] left-[12%] text-5xl animate-bounce"
+        style="animation-duration: 12s; animation-delay: -2s; animation-timing-function: ease-in-out;">💡</div>
+      <div class="absolute top-[70%] left-[8%] text-6xl animate-bounce"
+        style="animation-duration: 10s; animation-delay: -5s; animation-timing-function: ease-in-out;">📊</div>
+      <div class="absolute top-[20%] right-[10%] text-7xl animate-bounce"
+        style="animation-duration: 9s; animation-delay: -1s; animation-timing-function: ease-in-out;">🚀</div>
+      <div class="absolute top-[55%] right-[15%] text-4xl animate-bounce"
+        style="animation-duration: 11s; animation-delay: -3s; animation-timing-function: ease-in-out;">✨</div>
+      <div class="absolute top-[85%] right-[5%] text-6xl animate-bounce"
+        style="animation-duration: 13s; animation-delay: -7s; animation-timing-function: ease-in-out;">🏆</div>
+      <div class="absolute top-[10%] left-[45%] text-5xl animate-bounce"
+        style="animation-duration: 15s; animation-delay: -4s; animation-timing-function: ease-in-out;">💻</div>
+      <div class="absolute bottom-[10%] left-[30%] text-4xl animate-bounce"
+        style="animation-duration: 14s; animation-delay: -6s; animation-timing-function: ease-in-out;">⚙️</div>
+    </div>
+    <!-- Main Content -->
+    <main
+      class="flex-grow pb-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full relative"
+      style="z-index: 10; padding-top: 112px;">
+      <div class="mb-8">
+        <h1 class="font-headline-xl text-headline-xl text-on-surface mb-4">Skills &amp; Certifications</h1>
+        <p class="font-body-lg text-body-lg text-text-secondary max-w-2xl">A comprehensive overview of technical
+          proficiencies, management capabilities, and professional accreditations.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+        <!-- Cloud & Technical Panel (Spans 8 cols on desktop) -->
+        <section class="glass-panel rounded-[24px] p-8 md:col-span-8 flex flex-col h-full">
+          <div class="flex items-center justify-between mb-8">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
+                <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">code_blocks</span>
+              </div>
+              <h2 class="font-headline-md text-headline-md text-on-surface">Cloud &amp; Technical</h2>
+            </div>
+          </div>
+          <div class="flex flex-col gap-8 w-full">
+            <!-- Winners Podium -->
+            <div class="flex items-end justify-center gap-4 h-64 relative pt-12">
+              <!-- 2nd Place: Load Testing -->
+              <div class="flex flex-col items-center w-1/3">
+                <span class="text-5xl mb-2">🥈</span>
+                <div
+                  class="bg-white/40 backdrop-blur-md border border-white/50 rounded-t-xl w-full h-24 flex flex-col items-center justify-center p-2 text-center shadow-sm">
+                  <span class="font-bold text-label-md text-on-surface">Load Testing</span>
+                  <span class="text-[10px] text-primary/60 font-bold uppercase bg-secondary-fixed px-2 rounded-full">2nd</span>
+                </div>
+              </div>
+              <!-- 1st Place: Linux Admin -->
+              <div class="flex flex-col items-center w-1/3 relative">
+                <div
+                  class="bg-primary/10 backdrop-blur-lg border-2 border-primary/30 rounded-t-2xl w-full h-40 flex flex-col items-center justify-center p-2 text-center shadow-lg">
+                  <span class="font-bold text-body-md text-on-surface">Linux Admin</span>
+                  <span class="text-label-md text-primary font-bold uppercase bg-tertiary-fixed px-2 rounded-full">GOAT</span>
+                </div>
+                <div class="absolute -top-8 flex gap-2">
+                  <span class="animate-bounce text-3xl">✨</span>
+                  <span class="text-7xl">🏆</span>
+                  <span class="animate-bounce text-3xl">✨</span>
+                </div>
+              </div>
+              <!-- 3rd Place: Monitoring Grafana -->
+              <div class="flex flex-col items-center w-1/3">
+                <span class="text-5xl mb-2">🥉</span>
+                <div
+                  class="bg-white/40 backdrop-blur-md border border-white/50 rounded-t-xl w-full h-16 flex flex-col items-center justify-center p-2 text-center shadow-sm">
+                  <span class="font-bold text-label-md text-on-surface">Grafana</span>
+                  <span class="text-[10px] text-primary/30 font-bold uppercase bg-tertiary-container px-2 rounded-full text-on-tertiary">3rd</span>
+                </div>
+              </div>
+            </div>
+            <!-- Remaining Skills Badges -->
+            <div class="flex flex-wrap justify-center gap-3">
+              <span class="skill-pill bg-white/60">AppSec 🐍</span>
+              <span class="skill-pill bg-white/60">Docker 🐳</span>
+              <span class="skill-pill bg-white/60">Kubernetes ☸️</span>
+              <span class="skill-pill bg-white/60">Monitoring ☁️</span>
+              <span class="skill-pill bg-white/60">CI/CD 🚀</span>
+              <span class="skill-pill bg-white/60">Performance Testing ⚙️</span>
+            </div>
+          </div>
+        </section>
+        <!-- Certifications Panel (Spans 4 cols on desktop) -->
+        <section class="glass-panel rounded-[24px] p-8 md:col-span-4 flex flex-col h-full">
+          <div class="flex items-center gap-4 mb-8">
+            <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-primary">
+              <span class="material-symbols-outlined">workspace_premium</span>
+            </div>
+            <h2 class="font-headline-md text-headline-md text-on-surface">Certifications</h2>
+          </div>
+          <div class="flex flex-col gap-4">
+            <div class="p-4 rounded-xl bg-white/40 border border-white/50 backdrop-blur-sm">
+              <h3 class="font-label-md text-label-md text-on-surface mb-1">HCIA Cloud Computing V5.5</h3>
+              <p class="font-body-sm text-body-sm text-text-secondary">Huawei</p>
+            </div>
+            <div class="p-4 rounded-xl bg-white/40 border border-white/50 backdrop-blur-sm">
+              <h3 class="font-label-md text-label-md text-on-surface mb-1">HCIA Datacom V1.0</h3>
+              <p class="font-body-sm text-body-sm text-text-secondary">Huawei</p>
+            </div>
+            <div class="p-4 rounded-xl bg-white/40 border border-white/50 backdrop-blur-sm">
+              <h3 class="font-label-md text-label-md text-on-surface mb-1">CCNA Introduction to Networks</h3>
+              <p class="font-body-sm text-body-sm text-text-secondary">Cisco</p>
+            </div>
+          </div>
+        </section>
+        <!-- Project Management Panel (Spans 6 cols on desktop) -->
+        <section class="glass-panel rounded-[24px] p-8 md:col-span-6 flex flex-col h-full">
+          <div class="flex items-center gap-4 mb-8">
+            <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-primary">
+              <span class="material-symbols-outlined">fact_check</span>
+            </div>
+            <h2 class="font-headline-md text-headline-md text-on-surface">Project Management</h2>
+          </div>
+          <div class="flex flex-wrap gap-3 mt-auto">
+            <span class="skill-pill">Planning</span>
+            <span class="skill-pill">Budgeting (RAK/RAB/SOW)</span>
+            <span class="skill-pill">Financial Reporting</span>
+            <span class="skill-pill">Agile</span>
+            <span class="skill-pill">Notion</span>
+            <span class="skill-pill">Google Workspace</span>
+            <span class="skill-pill">MS 365</span>
+          </div>
+        </section>
+        <!-- Soft Skills Panel (Spans 6 cols on desktop) -->
+        <section class="glass-panel rounded-[24px] p-8 md:col-span-6 flex flex-col h-full">
+          <div class="flex items-center gap-4 mb-8">
+            <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-primary">
+              <span class="material-symbols-outlined">psychology</span>
+            </div>
+            <h2 class="font-headline-md text-headline-md text-on-surface">Soft Skills</h2>
+          </div>
+          <div class="flex flex-wrap gap-3 mt-auto">
+            <span class="skill-pill">Leadership</span>
+            <span class="skill-pill">Time Management</span>
+            <span class="skill-pill">Critical Thinking</span>
+            <span class="skill-pill">Public Speaking</span>
+            <span class="skill-pill">Documentation</span>
+            <span class="skill-pill">Creativity</span>
+          </div>
+        </section>
+      </div>
+    </main>
+    <!-- Footer -->
+    <footer class="w-full py-stack-lg glass-footer mt-auto">
+      <div
+        class="max-w-container-max mx-auto px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-stack-md">
+        <div class="font-label-md text-label-md font-bold text-on-surface">Janiar Rahma Putri</div>
+        <div class="flex gap-stack-md">
+          <a class="text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100 font-label-md text-label-md"
+            href="https://linkedin.com/in/janiarrahmaputri" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100 font-label-md text-label-md"
+            href="https://github.com/Jaaaaniiiii" target="_blank" rel="noopener">GitHub</a>
+          <a class="text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100 font-label-md text-label-md"
+            href="mailto:janiarrahmaputri@gmail.com">Email</a>
+        </div>
+        <div class="font-body-sm text-body-sm text-on-surface-variant">© 2026 Janiar Rahma Putri. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </div>
+  <!-- ============================================================ -->
+
+
+  <!-- ============================================================
+     PAGE 5 — CONTACT
+     Source: contact_janiar_rahma_putri_2/code.html
+     (body content preserved 100%, nav removed)
+     ============================================================ -->
+  <div id="page-contact" class="page-section">
+    <!-- Floating Emoji Background Layer -->
+    <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none opacity-30 blur-[2px] select-none"
+      aria-hidden="true">
+      <div class="absolute top-[10%] left-[15%] text-5xl emoji-float-1">👋</div>
+      <div class="absolute top-[20%] right-[10%] text-6xl emoji-float-2">📧</div>
+      <div class="absolute top-[60%] left-[5%] text-4xl emoji-float-3">📍</div>
+      <div class="absolute bottom-[15%] right-[20%] text-5xl emoji-float-1">💬</div>
+      <div class="absolute top-[40%] left-[45%] text-7xl emoji-float-2">✨</div>
+      <div class="absolute bottom-[25%] left-[30%] text-6xl emoji-float-3">🚀</div>
+      <div class="absolute top-[80%] right-[5%] text-4xl emoji-float-1">👋</div>
+      <div class="absolute top-[5%] left-[60%] text-5xl emoji-float-2">✨</div>
+    </div>
+    <!-- Main Content Canvas -->
+    <main class="flex-grow pb-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full"
+      style="padding-top: calc(80px + 40px);">
+      <!-- Header Section -->
+      <section class="mb-section-gap text-center md:text-left">
+        <h1 class="font-headline-xl text-headline-xl text-on-surface mb-stack-md hidden md:block">Get in Touch</h1>
+        <h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-stack-sm md:hidden">Get in Touch
+        </h1>
+        <p class="font-body-lg text-body-lg text-text-secondary max-w-2xl mx-auto md:mx-0">
+          Let's discuss how my technical expertise and leadership can contribute to your next project. Open for
+          opportunities.
+        </p>
+      </section>
+      <!-- Bento Grid Layout -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+        <!-- Contact Information Side (Left) -->
+        <div class="md:col-span-5 flex flex-col gap-stack-lg">
+          <!-- Contact Chips/Cards -->
+          <div class="glass-panel rounded-xl p-stack-lg flex flex-col gap-stack-md"
+            style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.7) 100%);">
+            <h2 class="font-headline-md text-headline-md text-on-surface mb-stack-sm">Direct Contact</h2>
+            <a href="mailto:janiarrahmaputri@gmail.com"
+              class="flex items-center gap-stack-md p-stack-sm rounded-lg hover:bg-white/40 transition-colors group">
+              <div
+                class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                <span class="material-symbols-outlined">mail</span>
+              </div>
+              <div>
+                <p class="font-label-md text-label-md text-text-secondary">Email</p>
+                <p class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">
+                  janiarrahmaputri@gmail.com</p>
+              </div>
+            </a>
+            <a href="tel:+628112166033"
+              class="flex items-center gap-stack-md p-stack-sm rounded-lg hover:bg-white/40 transition-colors group">
+              <div
+                class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                <span class="material-symbols-outlined">call</span>
+              </div>
+              <div>
+                <p class="font-label-md text-label-md text-text-secondary">Phone</p>
+                <p class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">+62
+                  811-2166-033</p>
+              </div>
+            </a>
+          </div>
+          <div class="glass-panel rounded-xl p-stack-lg flex flex-col gap-stack-md"
+            style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.7) 100%);">
+            <h2 class="font-headline-md text-headline-md text-on-surface mb-stack-sm">Professional Networks</h2>
+            <a href="https://linkedin.com/in/janiarrahmaputri" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-stack-md p-stack-sm rounded-lg hover:bg-white/40 transition-colors group">
+              <div
+                class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                <span class="material-symbols-outlined">link</span>
+              </div>
+              <div>
+                <p class="font-label-md text-label-md text-text-secondary">LinkedIn</p>
+                <p class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">
+                  linkedin.com/in/janiarrahmaputri</p>
+              </div>
+            </a>
+            <a href="https://github.com/Jaaaaniiiii" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-stack-md p-stack-sm rounded-lg hover:bg-white/40 transition-colors group">
+              <div
+                class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                <span class="material-symbols-outlined">code</span>
+              </div>
+              <div>
+                <p class="font-label-md text-label-md text-text-secondary">GitHub</p>
+                <p class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">
+                  github.com/Jaaaaniiiii</p>
+              </div>
+            </a>
+          </div>
+          <div class="glass-panel rounded-xl p-stack-lg flex items-center gap-stack-md"
+            style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.7) 100%);">
+            <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary">
+              <span class="material-symbols-outlined">location_on</span>
+            </div>
+            <div>
+              <p class="font-label-md text-label-md text-text-secondary">Location</p>
+              <p class="font-body-md text-body-md text-on-surface">Bandung, West Java, Indonesia</p>
+            </div>
+          </div>
+        </div>
+        <!-- Contact Form Side (Right) -->
+        <div class="md:col-span-7">
+          <div class="glass-panel rounded-xl p-stack-lg md:p-[48px] h-full flex flex-col"
+            style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.7) 100%);">
+            <h2 class="font-headline-lg text-headline-lg text-on-surface mb-stack-md hidden md:block">Send a Message
+            </h2>
+            <h2 class="font-headline-md text-headline-md text-on-surface mb-stack-md md:hidden">Send a Message</h2>
+            <form id="contact-form" class="flex flex-col gap-stack-md flex-grow">
+              <div class="flex flex-col gap-stack-sm">
+                <label for="contact-name" class="font-label-md text-label-md text-on-surface">Name</label>
+                <input type="text" id="contact-name" name="name" required
+      class="w-full bg-[#E8EAED] border-transparent rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:border-primary focus:ring-0 focus:outline-none transition-colors"
+      placeholder="Jane Doe">
+              </div>
+              <div class="flex flex-col gap-stack-sm">
+                <label for="contact-email" class="font-label-md text-label-md text-on-surface">Email Address</label>
+                <input type="email" id="contact-email" name="email" required
+      class="w-full bg-[#E8EAED] border-transparent rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:border-primary focus:ring-0 focus:outline-none transition-colors"
+      placeholder="jane@example.com">
+              </div>
+              <div class="flex flex-col gap-stack-sm flex-grow">
+                <label for="contact-message" class="font-label-md text-label-md text-on-surface">Message</label>
+                <textarea id="contact-message" name="message" rows="5" required
+      class="w-full h-full bg-[#E8EAED] border-transparent rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:border-primary focus:ring-0 focus:outline-none transition-colors resize-none"
+      placeholder="How can we collaborate?"></textarea>
+              </div>
+
+              <!-- Status message -->
+              <div id="form-status" class="hidden text-sm font-medium px-4 py-3 rounded-lg"></div>
+
+              <button type="button" id="submit-btn" onclick="handleContactSubmit()"
+    class="mt-stack-md w-full md:w-auto self-start bg-primary text-white font-label-md text-label-md py-3 px-8 rounded-full hover:bg-surface-tint transition-colors shadow-sm hover:shadow-md flex items-center gap-2">
+    <span id="btn-text">Send Message</span>
+    <span id="btn-spinner" class="hidden material-symbols-outlined animate-spin text-[18px]">autorenew</span>
+  </button>
+            </form>
+
+            <script>
+              function handleContactSubmit() {
+    var name    = document.getElementById('contact-name').value.trim();
+    var email   = document.getElementById('contact-email').value.trim();
+    var message = document.getElementById('contact-message').value.trim();
+    var status  = document.getElementById('form-status');
+    var btn     = document.getElementById('submit-btn');
+    var btnText = document.getElementById('btn-text');
+    var spinner = document.getElementById('btn-spinner');
+
+    // Validasi sederhana
+    if (!name || !email || !message) {
+      showStatus('error', 'Mohon isi semua field sebelum mengirim.');
+      return;
+    }
+
+    // Loading state
+    btn.disabled = true;
+    btnText.textContent = 'Mengirim...';
+    spinner.classList.remove('hidden');
+    status.classList.add('hidden');
+
+    // Panggil fungsi Apps Script
+    google.script.run
+      .withSuccessHandler(function(result) {
+        btn.disabled = false;
+        btnText.textContent = 'Send Message';
+        spinner.classList.add('hidden');
+
+        if (result.success) {
+          showStatus('success', '✅ Pesan berhasil dikirim! Terima kasih, ' + name + '.');
+          document.getElementById('contact-form').reset();
+        } else {
+          showStatus('error', '❌ ' + result.message);
+        }
+      })
+      .withFailureHandler(function(err) {
+        btn.disabled = false;
+        btnText.textContent = 'Send Message';
+        spinner.classList.add('hidden');
+        showStatus('error', '❌ Gagal mengirim pesan. Coba lagi ya!');
+      })
+      .submitContactForm({ name: name, email: email, message: message });
+  }
+
+  function showStatus(type, msg) {
+    var status = document.getElementById('form-status');
+    status.textContent = msg;
+    status.classList.remove('hidden', 'bg-green-50', 'text-green-700', 'bg-red-50', 'text-red-700', 'border', 'border-green-200', 'border-red-200');
+    if (type === 'success') {
+      status.classList.add('bg-green-50', 'text-green-700', 'border', 'border-green-200');
+    } else {
+      status.classList.add('bg-red-50', 'text-red-700', 'border', 'border-red-200');
+    }
+  }
+            </script>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- Footer -->
+    <footer class="w-full py-stack-lg glass-footer mt-auto">
+      <div
+        class="max-w-container-max mx-auto px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-stack-md">
+        <div class="font-label-md text-label-md font-bold text-on-surface">Janiar Rahma Putri</div>
+        <div class="flex gap-stack-md">
+          <a class="text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100 font-label-md text-label-md"
+            href="https://linkedin.com/in/janiarrahmaputri" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100 font-label-md text-label-md"
+            href="https://github.com/Jaaaaniiiii" target="_blank" rel="noopener">GitHub</a>
+          <a class="text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100 font-label-md text-label-md"
+            href="mailto:janiarrahmaputri@gmail.com">Email</a>
+        </div>
+        <div class="font-body-sm text-body-sm text-on-surface-variant">© 2026 Janiar Rahma Putri. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </div>
+  <!-- ============================================================ -->
+
+
+  <!-- ============================================================
+     NAVIGATION JAVASCRIPT
+     ============================================================ -->
+  <script>
+    var pages = ['home', 'experience', 'organizations', 'skills', 'contact'];
+
+  function navigateTo(pageId) {
+    // Hide all pages
+    pages.forEach(function(p) {
+      var el = document.getElementById('page-' + p);
+      if (el) el.classList.remove('active');
+    });
+
+    // Show target page
+    var target = document.getElementById('page-' + pageId);
+    if (target) target.classList.add('active');
+
+    // Update desktop nav active state
+    pages.forEach(function(p) {
+      var navEl = document.getElementById('nav-' + p);
+      if (!navEl) return;
+      if (p === pageId) {
+        navEl.classList.add('nav-active');
+        navEl.classList.remove('text-on-surface-variant');
+      } else {
+        navEl.classList.remove('nav-active');
+        navEl.classList.add('text-on-surface-variant');
+      }
+    });
+
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function toggleMobileMenu() {
+    var menu = document.getElementById('mobile-nav');
+    if (menu) {
+      menu.classList.toggle('hidden');
+      menu.classList.toggle('flex');
+    }
+  }
+
+  // Initialize: show home on load
+  navigateTo('home');
+  </script>
+
+</body>
+
+</html>
